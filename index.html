@@ -8,9 +8,6 @@
         <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 
-        <!-- v2 -->
-        <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
-
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
@@ -20,26 +17,12 @@
                     <v-app-bar color="orange">
                         <v-container>
                             <v-app-bar-title>
-                                科目毎成績画像自動集計機構試作品
+                                成績自動集計システム
                             </v-app-bar-title>
                         </v-container>
                     </v-app-bar>
                     <v-container>
-                    <v-file-input
-                      v-on:change="registerFiles($event)"
-                      counter
-                      small-chips
-                      multiple
-                      truncate-length="33"
-                      accept="image/png, image/jpeg"></v-file-input>
-                      <v-btn
-                        elevation="3">CLICK ME</v-btn>
-                    <v-carousel v-if="renderFlag">
-                        <v-carousel-item
-                          v-for="(src,i) in img"
-                          :key="i"
-                          :src="src"></v-carousel-item>
-                    </v-carousel>
+                    <v-btn elevation="3">CLICK ME</v-btn>
                     </v-container>
                 </v-main>
             </v-app>
