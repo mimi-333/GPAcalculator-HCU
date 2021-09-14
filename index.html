@@ -22,7 +22,21 @@
                         </v-container>
                     </v-app-bar>
                     <v-container>
-                    <v-btn elevation="3">CLICK ME</v-btn>
+                        <v-row><v-col>
+                        <v-textarea
+                          outlined
+                          auto-grow
+                          clearable
+                          v-model="target_text"
+                          placeholder="貼り付けて"></v-textarea></v-col></v-row>
+                        <v-row>
+                            <v-col>
+                                <v-btn elevation="3" @click="analyze">解析！</v-btn>
+                            </v-col>
+                        </v-row>
+                        <v-row><v-col v-for="i in items" :key="i">
+                            <v-card solo>{{i}}</v-card>
+                        </v-col></v-row>
                     </v-container>
                 </v-main>
             </v-app>
