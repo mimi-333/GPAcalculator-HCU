@@ -7,8 +7,6 @@
         <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-
-        <link rel="stylesheet" href="main.css">
     </head>
     <body>
         <div id="app">
@@ -17,7 +15,7 @@
                     <v-app-bar color="orange">
                         <v-container>
                             <v-app-bar-title>
-                                成績自動集計システム
+                                GPA自動計算システム
                             </v-app-bar-title>
                         </v-container>
                     </v-app-bar>
@@ -25,17 +23,42 @@
                         <v-row><v-col>
                         <v-textarea
                           outlined
-                          auto-grow
+                          no-resize
                           clearable
                           v-model="target_text"
                           placeholder="貼り付けて"></v-textarea></v-col></v-row>
-                        <v-row>
+                        <v-row justify="center">
                             <v-col>
                                 <v-btn elevation="3" @click="analyze">解析！</v-btn>
                             </v-col>
                         </v-row>
-                        <v-row><v-col v-for="i in items" :key="i">
-                            <v-card solo>{{i}}</v-card>
+                        <v-row><v-col v-for="item in formatted_semesters" :key="item[0]">
+                            <v-card v-if="item[1].sum != 0" outlined>
+                                <v-card-title>{{item[0]}}</v-card-title>
+                                <v-card-text>
+                                    履修単位数: {{item[1].sum}}<br>
+                                    取得単位数: {{item[1].calcGain()}}<br>
+                                    GPA: {{item[1].calcGPA()}}<br>
+                                    不可/不可*: {{item[1].calcLoss()}}<br>
+                                    可: {{item[1].可}}<br>
+                                    良: {{item[1].良}}<br>
+                                    優: {{item[1].優}}<br>
+                                    秀: {{item[1].秀}}
+                                </v-card-text>
+                            </v-card>
+                            <v-card v-else outlined>
+                                <v-card-title>{{item[0]}}</v-card-title>
+                                <v-card-text>
+                                    履修単位数: -<br>
+                                    取得単位数: -<br>
+                                    GPA: -<br>
+                                    不可/不可*: -<br>
+                                    可: -<br>
+                                    良: -<br>
+                                    優: -<br>
+                                    秀: -
+                                </v-card-text>
+                            </v-card>
                         </v-col></v-row>
                     </v-container>
                 </v-main>
