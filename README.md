@@ -1,1 +1,1 @@
-# SeisekiOCR-HCU
+# GPAcalculator-HCU
