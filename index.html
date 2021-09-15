@@ -37,7 +37,7 @@
                     <v-row justify="center">
                         <v-btn elevation="3" @click="analyze">解析！</v-btn>
                     </v-row>
-                    <v-row>
+                    <v-row justify="center">
                         <v-col cols="7" sm="5" md="4" v-for="item in formatted_semesters" :key="item[0]">
                             <v-card v-if="item[1].sum != 0" outlined>
                                 <v-card-title>{{item[0]}}</v-card-title>
