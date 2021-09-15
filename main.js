@@ -27,7 +27,8 @@ new Vue({
     data(){
         return{
             target_text: "",
-            semesters: []
+            semesters: [],
+            dialog: false
         };
     },
     computed:{
