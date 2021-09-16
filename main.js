@@ -28,7 +28,8 @@ new Vue({
         return {
             target_text: "",
             semesters: [],
-            dialog: false
+            dialog: false,
+            graph_objects: []
         };
     },
     computed: {
@@ -81,6 +82,43 @@ new Vue({
                         break;
                     default:
                         break;
+                }
+            }
+            this.$nextTick(this.plotGraphs);
+        },
+        plotGraphs() {
+            this.graph_objects.splice(0);
+            let sem = this.formatted_semesters;
+            for (let i = 0; i < sem.length; i++) {
+                let ctx = document.getElementById("myChart" + i);
+                if (ctx != null) {
+                    let chart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ["不可", "可", "良", "優", "秀"],
+                            datasets: [{
+                                data: [sem[i][1].calcLoss(),
+                                sem[i][1].可,
+                                sem[i][1].良,
+                                sem[i][1].優,
+                                sem[i][1].秀],
+                                backgroundColor: 'rgba(255,162,0,0.5)'
+                            }]
+                        },
+                        options: {
+                            scales:{
+                                y:{
+                                    beginAtZero: true
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        }
+                    });
+                    this.graph_objects.push(chart);
                 }
             }
         }
